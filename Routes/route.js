@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyparser = require("body-parser");
 
-const auth = require("../Middle Ware/verify.js");
+const auth = require("../Java Web Tokens/VerifyingToken.js");
 const registration = require("../Database/Register and Login.js");
 
 router.use(bodyparser.json());

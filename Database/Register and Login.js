@@ -1,7 +1,5 @@
 const user = require("./schema.js");
-
-const jwt = require("jsonwebtoken");
-const accessTokenSecret = "Hello World";
+const token = require("../Java Web Tokens/GeneratingToken.js")
 
 register = (req, res) => {
     
@@ -37,20 +35,14 @@ login = (req, res) => {
     user.findOne({ username: usname, password: psswrd },
     (err, data) => {
         if (err) {
-            console.log(err)
+            console.log(err);
         }    
         else if (data) {
-            const accessToken = jwt.sign(
-            { username: usname },
-            accessTokenSecret
-            );
-
-            res.json({accessToken});
+            token(usname, res);
         }
-        else
-        {
-            res.send("Username and Password in correct");
-        }
+        else {
+            res.send("Incorrect Username or Password")
+        }   
     })
 }
 
